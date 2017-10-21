@@ -6,7 +6,9 @@ export default (lines) => {
     const stateMachine = textToStateMachine(lines);
     const intermediate = stateMachineToIntermediate(stateMachine);
     const blueprint = intermediateToBlueprint(intermediate);
-    console.log(stateMachine);
-    console.log(intermediate);
-    return blueprint;
+    return {
+            "state":stateMachine
+            ,"intermediate":intermediate
+            ,"blueprint":blueprint
+    };
 };
