@@ -7,8 +7,8 @@ export default (lines) => {
     const intermediate = stateMachineToIntermediate(stateMachine);
     const blueprint = intermediateToBlueprint(intermediate);
     return {
-            "state":stateMachine
-            ,"intermediate":intermediate
+            "state":JSON.stringify(stateMachine)
+            ,"intermediate":JSON.stringify(intermediate)
             ,"blueprint":blueprint
     };
 };
