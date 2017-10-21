@@ -6,6 +6,7 @@ import setupEditor from './editor/main';
 import transpiler from './generator/transpiler';
 
 const textarea = document.querySelector('textarea.output');
+const debugarea = document.querySelector('textarea.debug');
 const select = document.querySelector('select');
 const editorContainer = document.querySelector('#editor');
 const compilerErrorContainer = document.querySelector('.compiler-error');
@@ -14,12 +15,17 @@ const editor = setupEditor(editorContainer);
 
 const compileText = () => {
     const code = editor.getValue();
+    var trans = 0;
     try {
-        textarea.textContent = transpiler(code).encode();
+        trans = transpiler(code); 
         compilerErrorContainer.innerHTML = '&nbsp';
     } catch(e) {
         console.error(e);
         compilerErrorContainer.textContent = e.message;
+    }
+    if(trans != 0) {
+        debugarea.textContent = trans["state"] + "\n" + trans["intermediate"];
+        textarea.textContent = trans["blueprint"].encode();
     }
 };
 
